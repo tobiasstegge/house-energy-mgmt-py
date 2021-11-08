@@ -1,2 +1,2 @@
-Length(m);Depth(m);Height(m);Uwalls(W/m2K);Uwindows(W/m2K);Awindow/Awall;Air Changes/hour (h^-1);Tinside(�C);Qpeople(W);Window Solar Gain;Height Lights (m)
-10;5;3;1;2;0.2;0.5;2;120;0.25;1.5
+﻿Length(m);Depth(m);Height(m);Uwalls(W/m2K);Uwindows(W/m2K);Awindow/Awall;Air Changes/hour (h^-1);Tinside(ºC);Twaterin(ºC);Qpeople(W);Window Solar Gain;Height Lights (m);Renewables_grid(%);Primary_Final_Factor;Emissions_grid(kgCO2/kWH);Emissions_Gas(kgCO2/KWh)
+10;5;3;1;2;0.2;0.5;2;20;120;0.25;1.5;0.6;1.5;0.2;0.4
