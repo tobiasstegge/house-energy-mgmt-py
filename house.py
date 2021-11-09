@@ -28,3 +28,10 @@ class House:
         self.wall_area = self.depth * self.height * 4 * (1 - self.fraction_window)
         self.volume = self.length * self.depth * self.height
         self.heat_loss = self.window_area * self.conductivity_windows + self.wall_area * self.wall_area
+
+        # picked from appliances
+        self.space_heater = {}
+        self.space_cooler = {}
+        self.hot_water_heater = {}
+        self.cooker = {}
+        self.lights = []

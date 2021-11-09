@@ -10,17 +10,17 @@ HEAT_OCCUPANT = 0.11 # kWh
 class Evaluator:
     def __init__(self, static_file, dynamic_file):
         conversion_file_path = './examples/Conversion_Technologies_Database.xlsx'
-        storage_file_path = './examples/StorageTechnologies_Database.xlsx'
-        end_use_file_path = './examples/End-Use_Technologies_DataBase..xlsx'
 
         self.house = House(static_file)
         self.dynamic_data = TimeSeries(dynamic_file)
-        self.appliances = Appliances(conversion_file_path, storage_file_path, end_use_file_path)
+        self.appliances = Appliances('./examples/End_Use_Technologies_DataBase.xlsx')
 
-        self.heating_demand = []
-        self.cooling_demand = []
-        self.hot_water_demand = []
+        self.heating = []
+        self.cooling = []
+        self.hot_water = []
+        self.cooking = []
         self.electrical_appliances = []
+        self.lighting = []
 
     def calculate_energy_services(self):
         for time_point in self.dynamic_data.data.values():
@@ -33,26 +33,33 @@ class Evaluator:
             total_heating = heat_loss_air + heat_loss_walls + heat_loss_windows - solar_gain - heat_occupants
 
             if total_heating > 0:
-                self.heating_demand.append(total_heating)
+                self.heating.append(total_heating)
             else:
-                self.heating_demand.append(0)
+                self.heating.append(0)
 
             if total_heating <= 0:
-                self.cooling_demand.append(abs(total_heating))
+                self.cooling.append(abs(total_heating))
             else:
-                self.cooling_demand.append(0)
+                self.cooling.append(0)
 
         # hot water
         for time_point in self.dynamic_data.data.values():
-            self.hot_water_demand.append(time_point['hot_water'] * HEAT_CAPACITY_WATER * self.house.temperature_water_in)
+            self.hot_water.append(time_point['hot_water'] * HEAT_CAPACITY_WATER * self.house.temperature_water_in)
 
-        # electricity
+        # cooking
         for time_point in self.dynamic_data.data.values():
-            self.electrical_appliances.append(time_point['cooking'] * 3.6 + time_point['electrical_appliances'])
+            self.cooking.append(time_point['cooking'] * 3.6)
+
+        # electrical_appliances
+        for time_point in self.dynamic_data.data.values():
+            self.electrical_appliances.append(time_point['electrical_appliances'])
 
         # lighting
+        for time_point in self.dynamic_data.data.values():
+            self.lighting.append(time_point['lighting'])
 
     def calculate_end_use(self):
+
         pass
 
     def final_energy_conversion(self):
