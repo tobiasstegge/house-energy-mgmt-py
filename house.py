@@ -30,8 +30,8 @@ class House:
         self.heat_loss = self.window_area * self.conductivity_windows + self.wall_area * self.wall_area
 
         # picked from appliances
-        self.space_heater = {}
-        self.space_cooler = {}
-        self.hot_water_heater = {}
-        self.cooker = {}
-        self.lights = []
+        self.space_heater = None
+        self.space_cooler = None
+        self.hot_water_heater = None
+        self.cooker = None
+        self.lights = None

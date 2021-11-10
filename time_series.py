@@ -13,7 +13,7 @@ class TimeSeries:
                 'wind_speed': row[1]['Wind speed'],
                 'radiance': row[1]['Rad (W/m^2)'],
                 'occupation': row[1]['Occupation'],
-                'lightning': row[1]['Lighting (lux)'],
+                'lighting': row[1]['Lighting (lux)'],
                 'total_lamps': row[1]['Total lapms'],
                 'percent_area_heating': row[1]['%AreaHeatingCooling'],
                 'hot_water': row[1]['Hot Water @ 40 C'],
