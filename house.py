@@ -34,4 +34,7 @@ class House:
         self.space_cooler = None
         self.hot_water_heater = None
         self.cooker = None
-        self.lights = None
+        self.light = None
+
+        self.pv_panel = None
+        self.battery = None

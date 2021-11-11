@@ -18,31 +18,17 @@ class Application(tk.Frame):
         self.dynamic_file = None
 
         # components
-        self.appliances = Appliances('./examples/End_Use_Technologies_DataBase.xlsx')
+        self.appliances = Appliances()
         self.appliance_boxes = AppliancesBoxes(parent, self.appliances)
 
         self.open_file_button = OpenFileButton(parent)
         self.evaluator = Evaluator(self.static_file, self.dynamic_file)
-        self.methods_radio = MethodsRadioButtons(parent, self.__sort_price(), self.__sort_efficiency())
+        self.methods_radio = MethodsRadioButtons(parent, self.__optimize_price(), self.__optimize_efficiency())
         self.calculation_buttons = CalculationButtons(parent, self.static_file, self.dynamic_file, self.appliance_boxes,
                                                       self.appliances)
 
-    def __sort_efficiency(self):
-        self.appliances.cookers = sorted(self.appliances.cookers, key=lambda cooker: cooker['efficiency'], reverse=True)
-        self.heaters_sorted = sorted(self.appliances.space_heaters,
-                                     key=lambda heater: heater['efficiency'],
-                                     reverse=True)
-        self.water_heater_sorted = sorted(self.appliances.hot_water, key=lambda heater: heater['efficiency'],
-                                          reverse=True)
-        self.cooler_sorted = sorted(self.appliances.space_coolers, key=lambda cooler: cooler['efficiency_cooling'],
-                                    reverse=True)
-        self.appliance_boxes = AppliancesBoxes(self.parent, self.appliances)
+    def __optimize_efficiency(self):
+        pass
 
-    def __sort_price(self):
-        self.cookers_sorted = sorted(self.appliances.cookers, key=lambda cooker: cooker['price'])
-        self.heaters_sorted = sorted(self.appliances.space_heaters,
-                                     key=lambda heater: heater['price'])
-        self.water_heater_sorted = sorted(self.appliances.hot_water, key=lambda heater: heater['price'])
-        self.cooler_sorted = sorted(self.appliances.space_coolers,
-                                    key=lambda cooler: cooler['price'])
-        self.appliance_boxes = AppliancesBoxes(self.parent, self.appliances)
+    def __optimize_price(self):
+        pass

@@ -24,4 +24,7 @@ class CalculationButtons(tk.Frame):
         self.evaluator.house.lights = self.appliances.lighting[self.appliance_boxes.box_lights.current()]
 
         self.evaluator.calculate_energy_services()
+        self.evaluator.choose_appliances('price')
         self.evaluator.calculate_end_use()
+        self.evaluator.choose_conversion_technologies('price')
+        self.evaluator.optimize_final_energy()
