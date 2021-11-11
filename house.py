@@ -16,9 +16,8 @@ class House:
         self.temperature_inside = self.data['Tinside(ºC)'].values[0]
         self.temperature_water_in = self.data['Twaterin(ºC)'].values[0]
         self.heat_transfer_people = self.data['Qpeople(W)'].values[0]
-        self.window_solar_gain = self.data['Window Solar Gain'].values[0]
-        self.percentage_renenwables_grid = self.data['Renewables_grid(%)'].values[0]
-        self.primary_final_factor = self.data['Primary_Final_Factor'].values[0]
+        self.percentage_renewables_grid = self.data['Renewables_grid(%)'].values[0]
+        self.primary_final_factor = 1.5
         self.emissions_grid = self.data['Emissions_grid(kgCO2/kWH)'].values[0]
         self.emissions_gas = self.data['Emissions_Gas(kgCO2/KWh)'].values[0]
 
@@ -30,11 +29,11 @@ class House:
         self.heat_loss = self.window_area * self.conductivity_windows + self.wall_area * self.wall_area
 
         # picked from appliances
-        self.space_heater = None
-        self.space_cooler = None
-        self.hot_water_heater = None
-        self.cooker = None
-        self.light = None
+        self.space_heater = {'name': ""}
+        self.space_cooler = {'name': ""}
+        self.hot_water_heater = {'name': ""}
+        self.cooker = {'name': ""}
+        self.light = {'name': ""}
 
-        self.pv_panel = None
-        self.battery = None
+        self.pv_panel = {'name': ""}
+        self.battery = {'name': ""}
