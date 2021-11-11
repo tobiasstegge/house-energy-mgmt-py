@@ -1,13 +1,14 @@
 import tkinter as tk
-from tkinter import Button, Entry, END
+from tkinter import Button, Label
 from evaluate import Evaluator
 from export_data import ExportExcel
 
 
 class CalculationButtons(tk.Frame):
-    def __init__(self, parent, static_file, dynamic_file, appliances, methods_radio):
+    def __init__(self, parent, static_file, dynamic_file, appliances, methods_radio, path):
         super().__init__(parent)
         self.parent = parent
+        self.path = path
         self.appliances = appliances
         self.methods_radio = methods_radio
         self.evaluator = Evaluator(static_file, dynamic_file)
@@ -16,11 +17,12 @@ class CalculationButtons(tk.Frame):
             text='Start Calculation',
             command=self.__start_calculation
         )
-        self.start_calculation_button.grid(row=7, column=5)
+        self.start_calculation_button.grid(sticky='NESW')
+        self.calculation_finished = False
 
     def __start_calculation(self):
 
-        values = ["price", "efficiency", "max_renewables"]
+        values = [None, "price", "efficiency", "max_renewables"]
 
         self.evaluator.calculate_energy_services()
         self.evaluator.choose_appliances(values[self.methods_radio.active_var.get()])
@@ -28,6 +30,11 @@ class CalculationButtons(tk.Frame):
         self.evaluator.choose_conversion_technologies(values[self.methods_radio.active_var.get()])
         self.evaluator.optimize_final_energy()
 
-        ExportExcel(evaluator=self.evaluator)
+        ExportExcel(evaluator=self.evaluator, path=self.path)
 
+        self.label_success = Label(
+            self.parent,
+            text=f'Success! Your data excel sheet is saved here: \n {self.path}',
+        )
+        self.label_success.grid(sticky='NESW')
 

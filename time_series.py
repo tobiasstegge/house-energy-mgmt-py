@@ -3,7 +3,6 @@ import pandas as pd
 
 class TimeSeries:
     def __init__(self, file):
-        file = './examples/Dynamic_Data.csv'
         csv_file = pd.read_csv(file, delimiter=';')
 
         self.data = {}

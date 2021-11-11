@@ -3,7 +3,6 @@ import pandas as pd
 
 class House:
     def __init__(self, file):
-        file = './examples/Static_Data.csv'
         self.data = pd.read_csv(file, delimiter=';')
 
         self.length = float(self.data['Length(m)'].values[0])
