@@ -1,11 +1,21 @@
 import pandas as pd
+import sys
+import os
 
 
 class Appliances:
     def __init__(self):
-        xlsx_end_use_file = pd.ExcelFile("./examples/End_Use_Technologies_DataBase.xlsx")
-        xlsx_conversion_file = pd.ExcelFile("./examples/Conversion_Technologies_Database.xlsx")
-        xlsx_storage_file = pd.ExcelFile("./examples/StorageTechnologies_Database.xlsx")
+
+        if getattr(sys, 'frozen', False):
+            xlsx_end_use_file = pd.ExcelFile(
+                os.path.join(sys._MEIPASS, "./examples/End_Use_Technologies_DataBase.xlsx"))
+            xlsx_conversion_file = pd.ExcelFile(
+                os.path.join(sys._MEIPASS, "./examples/Conversion_Technologies_Database.xlsx"))
+            xlsx_storage_file = pd.ExcelFile(os.path.join(sys._MEIPASS, "./examples/StorageTechnologies_Database.xlsx"))
+        else:
+            xlsx_end_use_file = pd.ExcelFile("./examples/End_Use_Technologies_DataBase.xlsx")
+            xlsx_conversion_file = pd.ExcelFile("./examples/Conversion_Technologies_Database.xlsx")
+            xlsx_storage_file = pd.ExcelFile("./examples/StorageTechnologies_Database.xlsx")
 
         # heaters
         self.space_heaters = []

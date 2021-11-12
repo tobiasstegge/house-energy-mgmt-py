@@ -32,12 +32,12 @@ class OpenFileButton(tk.Frame):
         self.open_output_dynamic.grid(sticky='NESW')
 
     def __open_static_file(self):
-        file_path = askopenfile(mode='r', filetypes=[('CSV', '*csv')], initialdir='./examples')
+        file_path = askopenfile(mode='r', filetypes=[('CSV', '*csv')])
         if file_path is not None:
             self.static_file = file_path.name
 
     def __open_dynamic_file(self):
-        file_path = askopenfile(mode='r', filetypes=[('CSV', '*csv')], initialdir='./example')
+        file_path = askopenfile(mode='r', filetypes=[('CSV', '*csv')])
         if file_path is not None:
             self.dynamic_file = file_path.name
 

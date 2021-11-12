@@ -33,3 +33,4 @@ class Application(tk.Frame):
                                                           self.appliances, self.methods_radio,
                                                           self.open_file_button.file_path_output)
             self.radio_checked = True
+

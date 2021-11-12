@@ -4,7 +4,6 @@ from utils import adapt_column_size
 
 class ExportExcel:
     def __init__(self, evaluator, path):
-        xls_filepath = './output/data_export.xlsx'
         with pd.ExcelWriter(path + "/DataExportTool.xlsx", engine='xlsxwriter') as writer:
             # Selected Appliances
             df_appliances = pd.DataFrame(columns=['Type', 'Name'])

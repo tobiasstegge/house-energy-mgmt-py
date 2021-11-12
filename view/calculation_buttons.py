@@ -9,7 +9,9 @@ class CalculationButtons(tk.Frame):
     def __init__(self, parent, static_file, dynamic_file, appliances, methods_radio, path):
         super().__init__(parent)
         self.parent = parent
+        self.plt = None
         self.path = path
+        self.show_plots = False
         self.appliances = appliances
         self.methods_radio = methods_radio
         self.evaluator = Evaluator(static_file, dynamic_file)
@@ -38,7 +40,15 @@ class CalculationButtons(tk.Frame):
         )
         self.label_success.grid(sticky='NESW')
 
-        plt.figure("Energy Use Graphs")
+        self.button_plots = Button(
+            self.parent,
+            text="Show plots",
+            command=self.plots
+
+        )
+        self.button_plots.grid(sticky='NESW')
+
+    def plots(self):
         hours = list(range(0, 24))
         plt.plot(hours, self.evaluator.end_use_total_electricity,
                  hours, self.evaluator.electricity_from_solar,
