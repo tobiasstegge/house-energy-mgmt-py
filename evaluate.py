@@ -342,3 +342,5 @@ class Evaluator:
         self.electricity_sold_to_grid = sum(self.electricity_to_grid)
         self.emissions = self.total_final_energy_gas * self.house.emissions_gas + \
                          self.electricity_bought_from_grid * self.house.emissions_grid
+
+

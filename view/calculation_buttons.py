@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Button, Label
 from evaluate import Evaluator
 from export_data import ExportExcel
+import matplotlib.pyplot as plt
 
 
 class CalculationButtons(tk.Frame):
@@ -21,7 +22,6 @@ class CalculationButtons(tk.Frame):
         self.calculation_finished = False
 
     def __start_calculation(self):
-
         values = [None, "price", "efficiency", "max_renewables"]
 
         self.evaluator.calculate_energy_services()
@@ -38,3 +38,17 @@ class CalculationButtons(tk.Frame):
         )
         self.label_success.grid(sticky='NESW')
 
+        plt.figure("Energy Use Graphs")
+        hours = list(range(0, 24))
+        plt.plot(hours, self.evaluator.end_use_total_electricity,
+                 hours, self.evaluator.electricity_from_solar,
+                 hours, self.evaluator.electricity_from_storage,
+                 hours, self.evaluator.electricity_to_storage,
+                 hours, self.evaluator.electricity_from_grid,
+                 hours, self.evaluator.electricity_to_grid,
+                 hours, self.evaluator.soc_battery)
+        plt.xlabel('hours')
+        plt.ylabel('kWh')
+        plt.legend(["Total Electricity", "Energy from Solar", "Electricity from Storage", "Electricity to Storage",
+                    "Electricity from Grid", "Electricity to Grid", "State of Charge Battery"])
+        plt.show()

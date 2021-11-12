@@ -9,7 +9,7 @@ class Application(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
-        parent.geometry('290x200')
+        parent.geometry('290x230')
 
         self.radio_checked = False
 
