@@ -9,7 +9,7 @@ class Application(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
-        parent.geometry('290x230')
+        parent.geometry('290x350')
 
         self.radio_checked = False
 
@@ -18,7 +18,7 @@ class Application(tk.Frame):
 
         self.appliances = Appliances()
         self.label_info = tk.Label(parent,
-                                   text="Hello dear Tester! :-) \n Pick the Input files and an output directory!")
+                                   text="Hello Dear Tester! :-) \n Pick the Input files and an output directory!")
         self.label_info.grid(sticky="S")
         self.open_file_button = OpenFileButton(parent)
         self.methods_radio = MethodsRadioButtons(parent, function=self.__radio_checked)
